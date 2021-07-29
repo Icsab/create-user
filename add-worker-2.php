@@ -29,6 +29,7 @@ require('graphql/insertMutations.php');
         $password = $_POST['password'];
         $jobtitle = $_POST['jobtitle'];
         $cn_email = $username . "@crewnew.com";
+        $cc = "others@e-stonia.co.uk";
 
         /*
             POST https://graph.microsoft.com/v1.0/users
@@ -45,6 +46,10 @@ require('graphql/insertMutations.php');
                 }
             }
         */
+
+        $subject = "Welcome on-boarding email & password (" . $cn;
+        $body = "Heya!,<br><br>Login to <a href=\"https://go.crewnew.com\">go.crewnew.com</a> with<br>user: " . $username . "<br>pass: " . $password;
+        $body .= "<br><br><a href=\"https://go.crewnew.com/index.php/s/YYCYwb4r9AjQYDi\">Lodin instructions>></a>";
     }
     ?>
 </body>
