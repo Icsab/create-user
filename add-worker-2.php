@@ -22,6 +22,7 @@ require('graphql/insertMutations.php');
 <body>
     <h1>Add Worker Account (step2)</h1>
     <?php
+	$token="authorization token";
     if (!empty($_POST)) {
         $cnid = $_POST['cnid'];
         $username = strtolower($_POST['username']);
@@ -46,6 +47,42 @@ require('graphql/insertMutations.php');
                 }
             }
         */
+        
+      
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => 'https://graph.microsoft.com/v1.0/users',
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => '',
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 0,
+		  CURLOPT_FOLLOWLOCATION => true,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => 'GET',
+		  CURLOPT_POSTFIELDS =>'Content-type: application/json
+
+		{
+		  "accountEnabled": true,
+		  "displayName": '.$username.',
+		  "mailNickname": '.$username.',
+		  "userPrincipalName": '.$cn_email.',
+		  "passwordProfile" : {
+			"forceChangePasswordNextSignIn": false,
+			"password": '.$password.'
+		  }
+		}',
+		  CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer'.$token,
+			'Content-Type: text/plain'
+		  ),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		echo $response;
+				
 
         $subject = "Welcome on-boarding email & password (" . $cn;
         $body = "Heya!,<br><br>Login to <a href=\"https://go.crewnew.com\">go.crewnew.com</a> with<br>user: " . $username . "<br>pass: " . $password;
