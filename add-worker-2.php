@@ -73,7 +73,7 @@ require('graphql/insertMutations.php');
 		  }
 		}',
 		  CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer'.$token,
+			'Authorization: Bearer '.$token,
 			'Content-Type: text/plain'
 		  ),
 		));
