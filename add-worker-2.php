@@ -24,10 +24,27 @@ require('graphql/insertMutations.php');
     <?php
     if (!empty($_POST)) {
         $cnid = $_POST['cnid'];
-        $username = $_POST['username'];
+        $username = strtolower($_POST['username']);
         $email = $_POST['email'];
         $password = $_POST['password'];
         $jobtitle = $_POST['jobtitle'];
+        $cn_email = $username . "@crewnew.com";
+
+        /*
+            POST https://graph.microsoft.com/v1.0/users
+            Content-type: application/json
+
+            {
+                "accountEnabled": true,
+                "displayName": $username,
+                "mailNickname": $username,
+                "userPrincipalName": $cn_email,
+                "passwordProfile" : {
+                    "forceChangePasswordNextSignIn": false,
+                    "password": $password
+                }
+            }
+        */
     }
     ?>
 </body>

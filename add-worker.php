@@ -27,7 +27,6 @@
             <tr>
                 <td><strong>Username <span style="color:red">**</span></strong></td>
                 <td><input type="text" name="username" />
-                    <!--TODO3: PHP make all small letters-->
                 </td>
             </tr>
             <tr>
