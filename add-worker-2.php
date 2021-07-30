@@ -49,6 +49,8 @@ require('graphql/insertMutations.php');
         */
         
       
+	   
+	  
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
@@ -60,21 +62,19 @@ require('graphql/insertMutations.php');
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => 'GET',
-		  CURLOPT_POSTFIELDS =>'Content-type: application/json
-
-		{
-		  "accountEnabled": true,
-		  "displayName": '.$username.',
-		  "mailNickname": '.$username.',
-		  "userPrincipalName": '.$cn_email.',
-		  "passwordProfile" : {
-			"forceChangePasswordNextSignIn": false,
-			"password": '.$password.'
-		  }
-		}',
+		  CURLOPT_POSTFIELDS =>'{
+				"accountEnabled": true,
+				"displayName": '.$username.',
+				"mailNickname": '.$username.',
+				"userPrincipalName": '.$cn_email.',
+				"passwordProfile" : {
+				"forceChangePasswordNextSignIn": false,
+				"password": '.$password.'
+			  }
+			}',
 		  CURLOPT_HTTPHEADER => array(
 			'Authorization: Bearer '.$token,
-			'Content-Type: text/plain'
+			'Content-type: application/json'
 		  ),
 		));
 
